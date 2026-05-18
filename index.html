@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Co-Intelligence Readiness Framework — WHAT IF LOVE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: transparent;
+    color: #111;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 3rem;
+  }
+
+  .fw { max-width: 720px; }
+
+  .intro {
+    padding: 2rem 0 1.75rem;
+    border-bottom: 1px solid #e8e5e0;
+  }
+
+  .intro-label {
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: .75rem;
+  }
+
+  .intro-hed {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    color: #111;
+  }
+
+  .intro-body {
+    font-size: 14px;
+    line-height: 1.85;
+    color: #555;
+    max-width: 580px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin: 1.75rem 0 .5rem;
+  }
+
+  /* Arc navigation */
+  .arc-row {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #e0ddd8;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+  }
+
+  .arc-cell {
+    flex: 1;
+    padding: .875rem .5rem;
+    cursor: pointer;
+    transition: background .15s;
+    border-right: 1px solid #e0ddd8;
+    text-align: center;
+    user-select: none;
+  }
+
+  .arc-cell:last-child { border-right: none; }
+  .arc-cell:hover { background: #f7f5f2; }
+  .arc-cell.active { background: #f0ede8; }
+
+  .arc-num {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #bbb;
+    display: block;
+    margin-bottom: 4px;
+    transition: color .15s;
+  }
+
+  .arc-cell.active .arc-num,
+  .arc-cell:hover .arc-num { color: #777; }
+
+  .arc-name {
+    font-size: 10px;
+    line-height: 1.4;
+    color: #888;
+    letter-spacing: .02em;
+  }
+
+  /* IDEH scale */
+  .ideh-strip {
+    display: flex;
+    border: 1px solid #e0ddd8;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .ideh-cell {
+    flex: 1;
+    padding: .625rem .5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: filter .15s;
+    border-right: 1px solid #e0ddd8;
+  }
+
+  .ideh-cell:last-child { border-right: none; }
+  .ideh-cell:hover { filter: brightness(.96); }
+
+  .ideh-cell .il {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .ideh-cell .id {
+    font-size: 11px;
+    line-height: 1.55;
+    display: none;
+    margin-top: 4px;
+  }
+
+  .ideh-cell.open .id { display: block; }
+
+  .ideh-i { background: #f1efe8; }
+  .ideh-i .il { color: #5f5e5a; }
+  .ideh-i .id { color: #777; }
+
+  .ideh-d { background: #faeeda; }
+  .ideh-d .il { color: #854f0b; }
+  .ideh-d .id { color: #9a6020; }
+
+  .ideh-e { background: #eaf3de; }
+  .ideh-e .il { color: #3b6d11; }
+  .ideh-e .id { color: #4a7a1a; }
+
+  .ideh-he { background: #e6f1fb; }
+  .ideh-he .il { color: #185fa5; }
+  .ideh-he .id { color: #2070b8; }
+
+  /* Domain blocks */
+  .domain-block {
+    border: 1px solid #e0ddd8;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: .875rem;
+    transition: border-color .15s;
+  }
+
+  .domain-block.open { border-color: #ccc9c2; }
+
+  .domain-hdr {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    transition: background .15s;
+    user-select: none;
+  }
+
+  .domain-hdr:hover { background: #fafaf8; }
+  .domain-block.open .domain-hdr { background: #fafaf8; }
+
+  .domain-num {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #ddd9d2;
+    min-width: 34px;
+    line-height: 1;
+    transition: color .15s;
+  }
+
+  .domain-block.open .domain-num { color: #aaa9a0; }
+
+  .domain-meta { flex: 1; }
+
+  .domain-name {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 2px;
+    color: #111;
+  }
+
+  .domain-tag {
+    font-size: 11px;
+    color: #aaa;
+    letter-spacing: .03em;
+  }
+
+  .domain-chev {
+    color: #bbb;
+    font-size: 18px;
+    transition: transform .2s, color .15s;
+    flex-shrink: 0;
+  }
+
+  .domain-block.open .domain-chev {
+    transform: rotate(180deg);
+    color: #888;
+  }
+
+  .domain-body {
+    display: none;
+    border-top: 1px solid #e8e5e0;
+  }
+
+  .domain-block.open .domain-body { display: block; }
+
+  .domain-intro {
+    padding: 1.125rem 1.25rem .5rem;
+    font-size: 13px;
+    line-height: 1.85;
+    color: #555;
+  }
+
+  .sd-hint {
+    padding: .5rem 1.25rem .25rem;
+    font-size: 11px;
+    color: #bbb;
+    letter-spacing: .02em;
+    font-style: italic;
+  }
+
+  /* Subdomain grid */
+  .sd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 8px;
+    padding: .5rem 1.25rem 1.25rem;
+  }
+
+  .sd-card {
+    padding: .875rem;
+    border: 1px solid #e8e5e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+  }
+
+  .sd-card:hover {
+    background: #fafaf8;
+    border-color: #d8d5cf;
+  }
+
+  .sd-card.open {
+    background: #fafaf8;
+    border-color: #ccc9c2;
+  }
+
+  .sd-code {
+    font-size: 10px;
+    font-weight: 600;
+    color: #bbb;
+    letter-spacing: .07em;
+    margin-bottom: 3px;
+  }
+
+  .sd-name {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 5px;
+    color: #222;
+  }
+
+  .sd-desc {
+    font-size: 11px;
+    line-height: 1.65;
+    color: #777;
+    margin-bottom: .625rem;
+  }
+
+  .sd-pills-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .sd-pills { display: flex; gap: 3px; }
+
+  .sd-pill {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 2px 5px;
+    border-radius: 3px;
+    opacity: .45;
+    transition: opacity .15s;
+  }
+
+  .sd-card:hover .sd-pill { opacity: .7; }
+  .sd-card.open .sd-pill { opacity: 1; }
+
+  .pill-i { background: #d3d1c7; color: #444441; }
+  .pill-d { background: #fac775; color: #633806; }
+  .pill-e { background: #c0dd97; color: #27500a; }
+  .pill-h { background: #b5d4f4; color: #0c447c; }
+
+  .sd-expand-hint {
+    margin-left: auto;
+    color: #ccc;
+    font-size: 13px;
+    line-height: 1;
+    transition: transform .2s, color .15s;
+    flex-shrink: 0;
+  }
+
+  .sd-card.open .sd-expand-hint {
+    transform: rotate(180deg);
+    color: #999;
+  }
+
+  /* Level indicators */
+  .sd-levels {
+    display: none;
+    margin-top: .625rem;
+    padding-top: .625rem;
+    border-top: 1px solid #e8e5e0;
+  }
+
+  .sd-card.open .sd-levels { display: block; }
+
+  .sd-level {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 5px;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .sd-level:last-child { margin-bottom: 0; }
+
+  .lvl-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .lvl-i { background: #d3d1c7; color: #444441; }
+  .lvl-d { background: #fac775; color: #633806; }
+  .lvl-e { background: #c0dd97; color: #27500a; }
+  .lvl-h { background: #b5d4f4; color: #0c447c; }
+
+  .sd-level p { color: #666; }
+
+  /* Framework notes */
+  .notes-block {
+    margin-top: 1.75rem;
+    padding: 1.25rem;
+    border: 1px solid #e0ddd8;
+    border-radius: 12px;
+    background: #fafaf8;
+  }
+
+  .notes-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: .875rem;
+  }
+
+  .notes-item {
+    display: flex;
+    gap: .875rem;
+    margin-bottom: .75rem;
+    font-size: 12px;
+    line-height: 1.75;
+    color: #666;
+  }
+
+  .notes-item:last-child { margin-bottom: 0; }
+
+  .notes-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #ccc;
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  /* PDF strip */
+  .pdf-strip {
+    margin-top: 1.75rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e0ddd8;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .pdf-text {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.55;
+  }
+
+  .pdf-text strong { color: #222; font-weight: 600; }
+
+  .pdf-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc9c2;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background .15s, border-color .15s;
+    text-decoration: none;
+  }
+
+  .pdf-btn:hover {
+    background: #f0ede8;
+    border-color: #bbb;
+  }
+
+  /* Chevron icon (CSS-only, no icon font dependency) */
+  .chev {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .chev::before,
+  .chev::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 1.5px;
+    background: currentColor;
+    border-radius: 1px;
+    top: 50%;
+  }
+
+  .chev::before { left: 1px; transform: translateY(-50%) rotate(45deg); }
+  .chev::after { right: 1px; transform: translateY(-50%) rotate(-45deg); }
+
+  .domain-chev-wrap {
+    color: #bbb;
+    transition: transform .2s, color .15s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+
+  .domain-block.open .domain-chev-wrap {
+    transform: rotate(180deg);
+    color: #888;
+  }
+
+  .sd-chev-wrap {
+    margin-left: auto;
+    color: #ccc;
+    transition: transform .2s, color .15s;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+  }
+
+  .sd-card.open .sd-chev-wrap {
+    transform: rotate(180deg);
+    color: #999;
+  }
+
+  @media (max-width: 480px) {
+    .intro-hed { font-size: 22px; }
+    .arc-name { font-size: 9px; }
+    .arc-num { font-size: 16px; }
+    .sd-grid { grid-template-columns: 1fr; }
+    .pdf-strip { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="fw">
+
+  <div class="intro">
+    <div class="intro-label">Co-Intelligence Readiness Framework &middot; CIRF v4</div>
+    <h1 class="intro-hed">Five questions.<br>One user. One partnership.</h1>
+    <p class="intro-body">A developmental rubric that measures how well a person governs their own collaboration with AI &mdash; whether they bring moral intent into the work, whether they can plan and steer without ceding the work to the model, whether what they produce actually holds up in the world, and what they bring to the partnership in the first place.</p>
+  </div>
+
+  <div class="section-label">The arc &mdash; select a domain</div>
+  <div class="arc-row" id="arcRow">
+    <div class="arc-cell" onclick="toggleDomain(0,this)">
+      <span class="arc-num">1</span>
+      <span class="arc-name">Benevolent intent</span>
+    </div>
+    <div class="arc-cell" onclick="toggleDomain(1,this)">
+      <span class="arc-num">2</span>
+      <span class="arc-name">Planning &amp; scope</span>
+    </div>
+    <div class="arc-cell" onclick="toggleDomain(2,this)">
+      <span class="arc-num">3</span>
+      <span class="arc-name">Judgment &amp; steering</span>
+    </div>
+    <div class="arc-cell" onclick="toggleDomain(3,this)">
+      <span class="arc-num">4</span>
+      <span class="arc-name">Follow-through</span>
+    </div>
+    <div class="arc-cell" onclick="toggleDomain(4,this)">
+      <span class="arc-num">5</span>
+      <span class="arc-name">What you bring</span>
+    </div>
+  </div>
+
+  <div class="section-label">The IDEH scale &mdash; tap to read</div>
+  <div class="ideh-strip">
+    <div class="ideh-cell ideh-i" onclick="toggleIdeh(this)">
+      <span class="il">I</span>
+      <span class="id">Purpose is vague or mainly self-oriented. Instinct governs.</span>
+    </div>
+    <div class="ideh-cell ideh-d" onclick="toggleIdeh(this)">
+      <span class="il">D</span>
+      <span class="id">Instinct is present but practice is inconsistent, especially under pressure.</span>
+    </div>
+    <div class="ideh-cell ideh-e" onclick="toggleIdeh(this)">
+      <span class="il">E</span>
+      <span class="id">Reliable self-governance. Work holds up and travels well.</span>
+    </div>
+    <div class="ideh-cell ideh-he" onclick="toggleIdeh(this)">
+      <span class="il">HE</span>
+      <span class="id">Qualitatively different practice. Sets new standards. Creates value that compounds.</span>
+    </div>
+  </div>
+
+  <div id="domainBlocks">
+
+    <!-- Domain 1 -->
+    <div class="domain-block" id="d0">
+      <div class="domain-hdr" onclick="toggleBlock('d0')">
+        <span class="domain-num">1</span>
+        <div class="domain-meta">
+          <div class="domain-name">Benevolent intent and moral anchoring</div>
+          <div class="domain-tag">Why the user wants to use AI</div>
+        </div>
+        <span class="domain-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+      </div>
+      <div class="domain-body">
+        <p class="domain-intro">The core risk of the AI age is capability without concern. Domain 1 measures whether the human brings moral intent into the collaboration and whether that intent shapes what gets built. Domain 1 constraints are system-level moral commitments: non-negotiables that shape vision, design, strategy, and what should never be built or automated.</p>
+        <p class="sd-hint">Each subdomain shows level indicators &mdash; tap to expand</p>
+        <div class="sd-grid">
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">1a</div>
+            <div class="sd-name">What you&rsquo;re creating, and who it&rsquo;s for</div>
+            <div class="sd-desc">Whether the user&rsquo;s purpose is legible &mdash; who it serves, what good it creates, and what harm it refuses.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Purpose is vague or mainly self-oriented. Beneficiaries are unnamed or generic.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>States intent to serve others but inconsistently connects that intent to decisions.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Purpose is clear and consistently shapes choices. Beneficiaries are specific. Refusals are explicit.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Moral commitments challenge prevailing norms when those norms permit avoidable harm. Positions are defensible, not merely idealistic.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">1b</div>
+            <div class="sd-name">Seeing consequences, now and later</div>
+            <div class="sd-desc">Whether the user anticipates who could be harmed, how misuse could happen, and how power and inequality might be amplified.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Harm and power are rarely considered unless someone else raises them.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Notices obvious harms; misses less visible or second-order impacts.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Proactively maps harms and misuse. Adjusts plans and constraints accordingly.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Maps unintended consequences across time horizons. When tradeoffs are made, they are genuinely intentional.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">1c</div>
+            <div class="sd-name">Build trust, bring together</div>
+            <div class="sd-desc">Whether the user orients toward human connection and recognizes that production decisions carry moral weight.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Avoids obvious violations but is casual with sensitive details. Production decisions made on efficiency grounds.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Applies protections and considers relational impact sometimes, but inconsistently &mdash; especially under urgency.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Consistent practices around consent, dignity, and agency. Production tradeoffs are made with the moral dimension visible.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Builds mechanisms that actively strengthen relational bonds as a structural feature of the work itself.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">1d</div>
+            <div class="sd-name">Translating commitments into features</div>
+            <div class="sd-desc">Whether moral intent actually shows up in the work as requirements, defaults, constraints, and boundaries.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Values are stated, but features and constraints are missing or optional.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Some constraints exist but they are incomplete, inconsistent, or easy to bypass.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Moral commitments reliably become constraints and design choices. Tradeoffs are made explicitly.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Constraints serve multiple purposes simultaneously &mdash; one design choice addresses safety, usability, and values alignment at once.</p></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Domain 2 -->
+    <div class="domain-block" id="d1">
+      <div class="domain-hdr" onclick="toggleBlock('d1')">
+        <span class="domain-num">2</span>
+        <div class="domain-meta">
+          <div class="domain-name">Planning and scope</div>
+          <div class="domain-tag">The actionable vision for how to use it</div>
+        </div>
+        <span class="domain-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+      </div>
+      <div class="domain-body">
+        <p class="domain-intro">Domain 2 measures whether you can lead the work as structural authority &mdash; setting a clear goal, defining what &ldquo;done&rdquo; means, and designing scope, sequence, roles, and stopping rules before production begins. Good planning protects intent and prevents drift, overreach, and the erosion of moral boundaries under scale.</p>
+        <p class="sd-hint">Each subdomain shows level indicators &mdash; tap to expand</p>
+        <div class="sd-grid">
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">2a</div>
+            <div class="sd-name">Knowing what done looks like</div>
+            <div class="sd-desc">Whether the user defines purpose, audience, scope, and success criteria before producing, and maintains orientation when the work expands.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>A goal exists, but scope and success are unclear. Starts producing before defining what good looks like.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Scope and criteria exist but shift during production or remain vague enough to accommodate almost any output.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Clear scope and success criteria. Keeps the work oriented. Can explain what is in, what is out, and why.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Internalized planning system that carries across projects without reinvention. Structure is clean enough that attention goes entirely to the work.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">2b</div>
+            <div class="sd-name">Setting boundaries that help</div>
+            <div class="sd-desc">Whether the user sets operational boundaries and pause points that improve outcomes.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Few boundaries. Relies on instinct to know when to stop.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Adds boundaries after problems appear. Stopping rules are reactive.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Boundaries are present from the start. Stopping rules are consistent and purposeful.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Boundary-setting is internalized as infrastructure, not overhead. Stopping rules deploy automatically with minimal setup cost.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">2c</div>
+            <div class="sd-name">Who does what, when</div>
+            <div class="sd-desc">Whether the user separates phases, assigns responsibilities, and maintains clarity about what must remain human work.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Process is ad hoc. Steps blur. The user and the AI trade turns without clear structure.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Some structure exists but execution is inconsistent. Roles blur under time pressure.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Repeatable workflow. Clear roles. The user knows which decisions are theirs.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Role clarity designed to protect bandwidth for the unexpected. The workflow accommodates pivots because structure was built with slack.</p></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Domain 3 -->
+    <div class="domain-block" id="d2">
+      <div class="domain-hdr" onclick="toggleBlock('d2')">
+        <span class="domain-num">3</span>
+        <div class="domain-meta">
+          <div class="domain-name">Judgment and steering</div>
+          <div class="domain-tag">The skill to steer and partner with it</div>
+        </div>
+        <span class="domain-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+      </div>
+      <div class="domain-body">
+        <p class="domain-intro">Domain 3 measures the &ldquo;third turn&rdquo;: your ability to reframe, challenge, verify, simplify, deepen, or stop without losing coherence or voice. Human hallucination is every bit as real as AI hallucination. The model drifts through fabrication and overconfidence. The human drifts through excitement, fatigue, and the gradual replacement of their own thinking with the model&rsquo;s framing. Domain 3 measures whether the human catches both.</p>
+        <p class="sd-hint">Each subdomain shows level indicators &mdash; tap to expand</p>
+        <div class="sd-grid">
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">3a</div>
+            <div class="sd-name">The third turn</div>
+            <div class="sd-desc">The third turn is where co-intelligence is won or lost. What the user does after the model responds sets the ceiling for the entire collaboration.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Accepts the model&rsquo;s framing. Default move is to ask for another revision of the same thing.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Tries different moves but falls back to &ldquo;revise again&rdquo; under pressure.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Chooses moves intentionally and can explain why this move now. Regularly seeks outside perspectives.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Steering moves consistently improve the work beyond its original trajectory &mdash; not just correcting drift, but pushing to greater depth or higher impact.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">3b</div>
+            <div class="sd-name">Knowing when the work is real</div>
+            <div class="sd-desc">Whether the user maintains contact with reality &mdash; not just factual accuracy, but alignment of intent and resistance to losing purpose turn by turn.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Takes AI output largely at face value. Does not recognize when intent has drifted.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Verifies some claims and catches some drift, but inconsistently.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Maintains a reliable practice of checking whether the work is real &mdash; across facts, intent, quality, and own engagement.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Reality-testing rigorous and habitual enough that verification failures are rare. Self-monitoring is continuous.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">3c</div>
+            <div class="sd-name">Identity and autonomy</div>
+            <div class="sd-desc">Whether the user maintains their own thinking, voice, and analytical framework. The challenge is not whether writing still sounds like you &mdash; it is whether you still think like you.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Voice shifts easily. Adopts the model&rsquo;s framing, vocabulary, and conclusions without visible independent evaluation.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Has preferences and positions but struggles to preserve them under the model&rsquo;s influence.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Stable voice and framework. AI supports the user&rsquo;s identity rather than replacing it.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Vision, voice, quality bar, and tolerance for ambiguity so consistently displayed that collaborators could predict standards and feedback patterns before receiving them.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">3d</div>
+            <div class="sd-name">Inventing a way forward</div>
+            <div class="sd-desc">When the user hits genuine gridlock, can they find a creative resolution that is neither capitulation nor stubbornness?</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>When stuck, either capitulates or digs in. Does not generate new options.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Occasionally finds creative resolutions, but momentum or clarity often drops during the pivot.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Consistently turns gridlock into forward motion. Produces resolutions that are genuinely new.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Produces resolutions the AI genuinely could not have generated. Invents options that did not exist before the moment demanded them.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">3e</div>
+            <div class="sd-name">Understanding what AI can and can&rsquo;t do</div>
+            <div class="sd-desc">Whether the user has calibrated trust that shapes how they verify, delegate, choose tools, and override.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Treats AI as generally reliable or unreliable. Says &ldquo;I know AI hallucinates&rdquo; but cannot translate that into different behavior.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Names some limitations but cannot consistently translate them into steering behavior or tool choices.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Has a usable mental model that improves verification, steering, and tool selection.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Actively tracks how AI capabilities and limitations are evolving as a visible, ongoing part of their practice.</p></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Domain 4 -->
+    <div class="domain-block" id="d3">
+      <div class="domain-hdr" onclick="toggleBlock('d3')">
+        <span class="domain-num">4</span>
+        <div class="domain-meta">
+          <div class="domain-name">Follow-through and impact</div>
+          <div class="domain-tag">What the user has produced with it</div>
+        </div>
+        <span class="domain-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+      </div>
+      <div class="domain-body">
+        <p class="domain-intro">Domain 4 measures whether co-intelligence produces real-world value: concrete outputs that hold up under scrutiny, serve their intended audience, and survive contact with reality. A draft that only the model sees is not delivery. Delivery means an output that other people can use, trust, and act on without you in the room.</p>
+        <p class="sd-hint">Each subdomain shows level indicators &mdash; tap to expand</p>
+        <div class="sd-grid">
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">4a</div>
+            <div class="sd-name">Shipping</div>
+            <div class="sd-desc">Whether the user produces concrete, complete deliverables &mdash; not just drafts, ideas, or interesting conversations.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Work stays at the level of drafts and ideas. The chat is productive but nothing ships.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Can finish simple deliverables with support. Quality is fragile.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Produces complete, usable artifacts reliably.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Deliverables finished with a degree of polish and completeness that would hold up in any professional context &mdash; not just the intended one.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">4b</div>
+            <div class="sd-name">Craft and handoff</div>
+            <div class="sd-desc">Whether the user&rsquo;s outward-facing work holds up, travels well enough for others to act on, and persists or compounds over time.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Shares first-pass output that reads generic or performative. Others cannot act without asking the user to explain.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Notices quality problems and requests revisions, but standards are inconsistent. Sometimes mistakes polish for depth.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>&ldquo;Done&rdquo; means no material errors, audience fit, clear and credible voice, and conceptual integrity. Outputs travel well.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>The user&rsquo;s work does not just meet the existing quality bar &mdash; it raises it. Output sets a new standard. Creates value that compounds.</p></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Domain 5 -->
+    <div class="domain-block" id="d4">
+      <div class="domain-hdr" onclick="toggleBlock('d4')">
+        <span class="domain-num">5</span>
+        <div class="domain-meta">
+          <div class="domain-name">What the user brings</div>
+          <div class="domain-tag">What the user contributes to the partnership</div>
+        </div>
+        <span class="domain-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+      </div>
+      <div class="domain-body">
+        <p class="domain-intro">Domain 5 asks what the user brings to AI &mdash; not what they do with it. The first four domains are observable in any single session. Domain 5 is observable only across sessions. A user can be Highly Effective on Domains 1&ndash;4 and Introductory on Domain 5 &mdash; operating AI excellently but bringing nothing distinctive to the partnership. The Highly Effective band describes a user whose work could not have been produced by anyone else.</p>
+        <p class="sd-hint">Each subdomain shows level indicators &mdash; tap to expand</p>
+        <div class="sd-grid">
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">5a</div>
+            <div class="sd-name">Depth</div>
+            <div class="sd-desc">Vertical knowledge within an expert field. Whether judgment is grounded in real practice that holds when the model sounds more confident than the user feels.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Defers to AI when uncertain. Each conversation starts from scratch.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Has knowledge but hesitates to assert it against confident AI output. Some knowledge builds; much is lost.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Corrects and contextualizes reliably. Sets standards the AI must meet. Learning compounds over time.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Domain knowledge deep enough to diagnose not just when the AI is wrong, but why its reasoning structure produced that specific error.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">5b</div>
+            <div class="sd-name">Breadth</div>
+            <div class="sd-desc">Horizontal knowledge across different fields. Whether the user bridges disciplines in ways that change strategy &mdash; not decorative analogies but structural connections.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Stays in one domain. Does not draw on knowledge from other fields.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Occasional connections across fields. Usefulness is uneven.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Regularly generates cross-domain connections that improve the work. Bridges are structural, not decorative.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Cross-domain connections do not just add insight &mdash; they reframe what question is being asked.</p></div>
+            </div>
+          </div>
+
+          <div class="sd-card" onclick="toggleSd(this)">
+            <div class="sd-code">5c</div>
+            <div class="sd-name">Growth</div>
+            <div class="sd-desc">The closed loop of reflection and action. Reflection without action is rumination. Action without reflection is reactive iteration. The skill is the closed loop, not either half.</div>
+            <div class="sd-pills-row">
+              <div class="sd-pills"><span class="sd-pill pill-i">I</span><span class="sd-pill pill-d">D</span><span class="sd-pill pill-e">E</span><span class="sd-pill pill-h">H</span></div>
+              <span class="sd-chev-wrap" aria-hidden="true"><span class="chev"></span></span>
+            </div>
+            <div class="sd-levels">
+              <div class="sd-level"><span class="lvl-badge lvl-i">I</span><p>Reflects occasionally, usually under external prompt. Rarely modifies practice as a result.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-d">D</span><p>Reflects regularly but inconsistently translates reflection into changed behavior. Modifications are local rather than systemic.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-e">E</span><p>Closes the loop reliably for specific recurring problems. Modifications hold across sessions.</p></div>
+              <div class="sd-level"><span class="lvl-badge lvl-h">H</span><p>Treats the loop itself as designable. Produces modifications that reduce the cost of future work, not just improve current work.</p></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="notes-block">
+    <div class="notes-label">Framework notes</div>
+    <div class="notes-item"><div class="notes-dot"></div><p>I and H are narrow bands describing category changes. D and E are wide bands where most growth occurs. Indicators describe observable actions, not personality traits. IDEH rubrics describe patterns, not checklists.</p></div>
+    <div class="notes-item"><div class="notes-dot"></div><p>A fifth designation, NR (Not Rated), applies when evidence is genuinely insufficient &mdash; not because the user is weak, but because the chat record lacks the relevant activity. Capped at two subdomains per assessment.</p></div>
+    <div class="notes-item"><div class="notes-dot"></div><p>No gating rule and no ceiling rule. Each domain is rated on its own evidence independently. One domain&rsquo;s score does not adjust another&rsquo;s.</p></div>
+    <div class="notes-item"><div class="notes-dot"></div><p>What this framework does not measure: technical skill with specific AI tools, speed of production, volume of output, or comfort with technology.</p></div>
+  </div>
+
+  <div class="pdf-strip">
+    <div class="pdf-text">
+      <strong>Download the framework</strong><br>
+      A print-ready PDF for reference, crosswalk, and sharing.
+    </div>
+    <a href="#" class="pdf-btn">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1v8M4 6l3 3 3-3M2 10v1.5A1.5 1.5 0 003.5 13h7a1.5 1.5 0 001.5-1.5V10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Download PDF
+    </a>
+  </div>
+
+</div>
+
+<script>
+function toggleBlock(id) {
+  document.getElementById(id).classList.toggle('open');
+  setTimeout(notifyHeight, 250);
+}
+
+function toggleSd(el) {
+  el.classList.toggle('open');
+  setTimeout(notifyHeight, 100);
+}
+
+function toggleIdeh(el) {
+  el.classList.toggle('open');
+  setTimeout(notifyHeight, 100);
+}
+
+function toggleDomain(idx, cell) {
+  var id = 'd' + idx;
+  var block = document.getElementById(id);
+  var cells = document.querySelectorAll('.arc-cell');
+  cells.forEach(function(c) { c.classList.remove('active'); });
+  cell.classList.add('active');
+  if (!block.classList.contains('open')) {
+    document.querySelectorAll('.domain-block').forEach(function(b) { b.classList.remove('open'); });
+    block.classList.add('open');
+    setTimeout(function() {
+      block.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      notifyHeight();
+    }, 50);
+  } else {
+    block.classList.remove('open');
+    cell.classList.remove('active');
+    notifyHeight();
+  }
+}
+
+function notifyHeight() {
+  var h = document.body.scrollHeight;
+  window.parent.postMessage({ type: 'cirf-resize', height: h }, '*');
+}
+
+window.addEventListener('load', function() {
+  setTimeout(notifyHeight, 100);
+  setTimeout(notifyHeight, 500);
+  setTimeout(notifyHeight, 1500);
+});
+window.addEventListener('resize', function() { setTimeout(notifyHeight, 100); });
+
+if (window.ResizeObserver) {
+  new ResizeObserver(function() { notifyHeight(); }).observe(document.body);
+}
+</script>
+
+</body>
+</html>
