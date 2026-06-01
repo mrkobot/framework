@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Co-Intelligence Readiness Framework — WHAT IF LOVE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: transparent;
+    color: #111;
+    padding: 1.5rem;
+    margin: 0 auto;
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    max-width: 1100px;
+  }
+
+  .card {
+    background: #f0ede8;
+    border: 1px solid #ddd9d2;
+    border-radius: 14px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .card-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; margin: 0 0 1rem; color: #888;
+    text-align: center;
+  }
+
+  .card-title {
+    font-size: 2.4rem; font-weight: 700; line-height: 1.15;
+    margin: 0 0 0.875rem; color: #111; letter-spacing: -0.02em;
+    text-align: center;
+  }
+  .card-title .title-sub {
+    display: block;
+    font-size: 2.4rem; font-weight: 700; color: #111;
+    text-align: center;
+  }
+
+  .card-body { font-size: 1rem; line-height: 1.75; margin: 0 0 1.25rem; color: #555; text-align: center; }
+  .card-subtitle { font-size: 1.25rem; line-height: 1.5; margin: 0 0 1.5rem; color: #333; font-weight: 400; text-align: center; }
+
+  .divider { border: none; border-top: 1px solid #ddd9d2; margin: 1.5rem 0; }
+
+  .dtabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1rem; justify-content: center; }
+  .dbtn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px; font-weight: 500; padding: 7px 12px;
+    border-radius: 8px; cursor: pointer; transition: all 0.15s ease;
+    line-height: 1.35; text-align: left;
+    border: 1px solid #ccc; background: #fff; color: #555;
+    position: relative;
+  }
+  .dbtn::after {
+    content: '›';
+    font-size: 14px;
+    margin-left: 6px;
+    opacity: 0.4;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    display: inline-block;
+  }
+  .dbtn:hover::after { opacity: 1; transform: translateX(2px); }
+  .dbtn.active::after { opacity: 0; }
+  .dbtn:hover {
+    background: #1a1a1a; color: #fff; border-color: #1a1a1a;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  }
+  .dbtn.active { background: #1a1a1a; color: #fff; border-color: #1a1a1a; }
+  .dbtn .dn { font-size: 10px; opacity: 0.55; display: block; margin-bottom: 1px; }
+
+  .dpanel { display: none; }
+  .dpanel.on { display: block; animation: fi 0.14s ease; }
+  @keyframes fi { from { opacity:0; transform:translateY(3px); } to { opacity:1; transform:translateY(0); } }
+
+  .ph { padding-bottom: 0.875rem; border-bottom: 1px solid #ddd9d2; margin-bottom: 0.875rem; text-align: left; }
+  .ph h4 { font-size: 15px; font-weight: 600; color: #111; margin: 0 0 0.35rem; }
+  .ph p { font-size: 13px; color: #666; margin: 0; line-height: 1.6; }
+  .pnote { margin-top: 0.6rem; font-size: 11px; color: #888; padding: 5px 10px; border-left: 2px solid #bbb; font-style: italic; }
+
+  .sdgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; }
+  .sdc {
+    background: #fff; border: 1px solid #ddd9d2;
+    border-radius: 9px; padding: 0.75rem 0.9rem;
+    transition: border-color 0.12s; text-align: left;
+  }
+  .sdc:hover { border-color: #aaa; }
+  .sdc .sid { font-size: 10px; font-weight: 600; color: #aaa; margin: 0 0 3px; letter-spacing: 0.05em; }
+  .sdc .sn { font-size: 13px; font-weight: 600; color: #111; margin: 0 0 5px; }
+  .sdc .sd { font-size: 12px; color: #666; margin: 0; line-height: 1.55; }
+
+  .ideh-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 0.75rem 0 1.375rem; justify-content: center; }
+  .ideh-chip { font-size: 11px; font-weight: 600; padding: 4px 11px; border-radius: 99px; }
+  .ideh-i { background: #ede9e3; color: #888; border: 1px solid #ccc; }
+  .ideh-d { background: #fef3e0; color: #9a6000; border: 1px solid #f5d48a; }
+  .ideh-e { background: #e5f5ee; color: #0a5c41; border: 1px solid #9ed8bb; }
+  .ideh-he { background: #e8f0fb; color: #1450a3; border: 1px solid #9dbcf0; }
+
+  .card-btn {
+    display: inline-block; font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 600; padding: 14px 28px;
+    border-radius: 8px; cursor: pointer;
+    border: 1.5px solid #1a1a1a; background: #1a1a1a; color: #fff;
+    text-decoration: none; transition: all 0.15s ease; letter-spacing: 0.01em;
+  }
+  .card-btn:hover {
+    background: #fff; color: #1a1a1a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  }
+
+  .gen-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 600; padding: 10px 20px;
+    border-radius: 8px; background: #1a1a1a; color: #fff;
+    border: 1.5px solid #1a1a1a; cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex; align-items: center; gap: 6px; letter-spacing: 0.01em;
+  }
+  .gen-btn:hover { background: #fff; color: #1a1a1a; transform: translateY(-1px); box-shadow: 0 4px 10px rgba(0,0,0,0.12); }
+  .gen-btn:disabled { opacity: 0.4; cursor: default; transform: none; box-shadow: none; }
+
+  .report-frame { border: 1px solid #e0ddd8; border-radius: 12px; background: #fafaf8; overflow: hidden; margin-top: 1rem; display: none; text-align: left; }
+  .report-frame.on { display: block; animation: fi 0.15s ease; }
+
+  .rf-hdr { padding: 1rem 1.25rem 0.875rem; border-bottom: 1px solid #e8e5e0; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; background: #fff; }
+  .rf-logo { font-size: 13px; font-weight: 600; color: #111; display: flex; align-items: baseline; gap: 2px; }
+  .rf-logo .rp { font-size: 17px; font-weight: 700; }
+  .rf-logo .rb { font-size: 12px; color: #888; }
+  .rf-logo .rn { margin-left: 8px; letter-spacing: 0.01em; }
+  .rf-logo .rs { font-size: 11px; font-weight: 400; color: #999; margin-left: 7px; }
+  .rf-meta { font-size: 11px; color: #999; text-align: right; line-height: 1.8; }
+
+  .rf-body { padding: 1.125rem 1.25rem; background: #fafaf8; }
+  .rf-sec { margin-bottom: 1.25rem; }
+  .rf-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #aaa; margin: 0 0 0.4rem; }
+  .rf-txt { font-size: 12.5px; line-height: 1.75; color: #444; margin: 0; }
+  .rf-txt + .rf-txt { margin-top: 0.5rem; }
+
+  .scores-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 5px; margin-top: 0.4rem; }
+  .sr { display: flex; align-items: center; justify-content: space-between; padding: 7px 10px; background: #fff; border: 1px solid #e8e5e0; border-radius: 7px; font-size: 11px; }
+  .sr .srn { color: #666; }
+  .srr { font-weight: 700; }
+  .srr.d { color: #9a6000; }
+  .srr.e { color: #0a5c41; }
+  .srr.he { color: #1450a3; }
+
+  .rf-ellipsis { font-size: 18px; color: #ccc; letter-spacing: 5px; margin: 0.25rem 0 0; display: block; }
+  .rf-trunc { margin-top: 0.75rem; padding: 0.65rem 1rem; background: #f0ede8; border-radius: 8px; font-size: 11px; color: #888; text-align: center; font-style: italic; }
+
+  .cursor { display: inline-block; width: 2px; height: 13px; background: #333; margin-left: 1px; vertical-align: middle; animation: blink 0.85s step-end infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .text-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 0.9rem; font-weight: 500; color: #555;
+    text-decoration: none; letter-spacing: 0.01em;
+    transition: color 0.15s ease;
+    margin: 0.25rem 0;
+  }
+  .text-link:hover { color: #111; }
+  .text-link .arrow { font-size: 1rem; transition: transform 0.15s ease; }
+  .text-link:hover .arrow { transform: translateX(3px); }
+
+  .framework-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 1.05rem; font-weight: 700; color: #111;
+    text-decoration: none; letter-spacing: -0.01em;
+    padding: 0.5rem 0; margin: 1.75rem 0;
+    border-bottom: 2px solid #111;
+    transition: gap 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+  .framework-link .arrow {
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .framework-link:hover { gap: 14px; color: #000; border-color: #000; }
+  .framework-link:hover .arrow { transform: translateX(5px); }
+
+  @media (max-width: 520px) {
+    .scores-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <h3 class="card-title">Co-Intelligence Readiness</h3>
+  <p class="card-subtitle">The report measures your ongoing AI collaboration and growth competencies against 5 domains and 17 sub-skills. Select each domain below to explore.</p>
+
+  <div class="dtabs" id="dtabs"></div>
+  <div id="dpanels"></div>
+
+  <a class="framework-link" href="https://whatiflove.org/co-intelligence-readiness-framework" target="_blank">Explore the full framework <span class="arrow">→</span></a>
+
+  <hr class="divider">
+
+  <div class="ideh-row">
+    <span class="ideh-chip ideh-i">Introductory</span>
+    <span class="ideh-chip ideh-d">Developing</span>
+    <span class="ideh-chip ideh-e">Effective</span>
+    <span class="ideh-chip ideh-he">Highly Effective</span>
+  </div>
+  <p class="card-body" style="margin-bottom: 1.25rem;">All 17 sub-skills are scored against observable behavior — not self-report.</p>
+
+  <button class="gen-btn" id="genBtn" onclick="startReport()"><span>Generate sample report</span></button>
+  <p style="font-size:0.85rem; color:#999; margin-top:0.5rem;">An abridged report — generated from real conversation history.</p>
+
+  <div class="report-frame" id="reportFrame">
+    <div class="rf-hdr">
+      <div>
+        <div class="rf-logo">
+          <span class="rp">+</span><span class="rb">!</span>
+          <span class="rn">WHAT IF LOVE</span>
+          <span class="rs">Co-Intelligence Readiness Assessment</span>
+        </div>
+      </div>
+      <div class="rf-meta">
+        <div>Asa</div>
+        <div>38 conversations reviewed</div>
+        <div id="rdate"></div>
+      </div>
+    </div>
+    <div class="rf-body" id="rfBody"></div>
+  </div>
+
+</div>
+
+<script>
+const domains = [
+  { num:"1", name:"Benevolent intent and moral anchoring", desc:"<strong>Why the user wants to use AI,</strong> and whether moral intent shapes what gets built. The core risk of the AI age is capability without concern; this framework measures concern before we assess ability.", subs:[{id:"1a",name:"What you're creating, and who it's for",desc:"Naming the intended beneficiary before output is produced, and holding that framing throughout."},{id:"1b",name:"Seeing consequences, now and later",desc:"Anticipating second-order effects and interests of people not present in the conversation."},{id:"1c",name:"Build trust, bring together",desc:"Using AI collaboration in ways that strengthen rather than erode the relationships the work serves."},{id:"1d",name:"Translating commitments into constraints",desc:"Converting stated values into actual parameters: what the model should and should not do."}]},
+  { num:"2", name:"Planning and scope", desc:"<strong>How the user plans and scopes AI projects.</strong> Effective planning requires current, grounded knowledge of what AI can and cannot do: without that, scope is set against a fiction. This domain measures whether the user can translate intent into a real project architecture.", subs:[{id:"2a",name:"Knowing what done looks like",desc:"Entering a session with a definition specific enough to evaluate the result."},{id:"2b",name:"Setting boundaries that help",desc:"Scoping the model's role so human judgment retains authority over decisions that matter."},{id:"2c",name:"Who does what, when",desc:"Deliberately allocating tasks between human and model — not defaulting to the model for everything."}]},
+  { num:"3", name:"Agency, Judgment, and Steering", desc:"<strong>The user's skill in steering AI, during a session, move by move.</strong> The third turn is where co-intelligence is won or lost: after the model responds, what the user does next sets the ceiling for everything that follows. This domain also measures whether the user's thinking stays their own, or gradually becomes the model's.", subs:[{id:"3a",name:"The third turn",desc:"Redirecting after the model's first response rather than accepting initial output."},{id:"3b",name:"Knowing when the work is real",desc:"Distinguishing outputs that hold up under scrutiny from outputs that merely look complete."},{id:"3c",name:"Identity and autonomy",desc:"Maintaining a distinct voice not gradually absorbed by the model's patterns."},{id:"3d",name:"Inventing a way forward",desc:"Generating novel approaches when the model's suggestions are inadequate."},{id:"3e",name:"Understanding what AI can and can't do",desc:"Accurate mental models of capability and failure modes — used actively, not recited."}]},
+  { num:"4", name:"Follow-through and impact", desc:"<strong>What the user has produced with AI.</strong> Whether co-intelligence produces real-world value that survives contact with reality. A draft that only the model sees is not delivery.", subs:[{id:"4a",name:"Shipping",desc:"Completing work to a standard that allows it to be used or handed off — not indefinitely refined."},{id:"4b",name:"Craft and handoff",desc:"Producing outputs that serve their audience on first contact, without requiring apology."}]},
+  { num:"5", name:"Adaptive Intelligence and Co-Evolution", desc:"Domain 5 measures what a user brings as a thinker—depth in a field, breadth across them—and whether those contributions consistently <strong>pull the partnership's quality ceiling upward without having to demand it.</strong> At its highest, the collaboration grows simpler and better with each session.", subs:[{id:"5a",name:"Depth That Resists Displacement",desc:"Depth in a specific field—strong enough to recognize when the model is wrong and to explain why. The explanation is the signal that raises what the model produces next."},{id:"5b",name:"Breadth That Reshapes Possibility",desc:"Cross-domain knowledge that changes what question is being asked—not frames that decorate the existing question, but ones that replace it."},{id:"5c",name:"Recursive Growth Through Practice",desc:"The closed loop of reflection and action, structured to improve how the practitioner improves—not just the work at hand."}]}
+];
+
+const tabsEl = document.getElementById('dtabs');
+const panelsEl = document.getElementById('dpanels');
+domains.forEach((d,i) => {
+  const btn = document.createElement('button');
+  btn.className = 'dbtn'+(i===0?' active':'');
+  btn.innerHTML = `<span class="dn">Domain ${d.num}</span>${d.name}`;
+  btn.onclick = () => {
+    document.querySelectorAll('.dbtn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.dpanel').forEach(p=>p.classList.remove('on'));
+    btn.classList.add('active');
+    document.getElementById('p'+i).classList.add('on');
+    setTimeout(notifyHeight, 50);
+  };
+  tabsEl.appendChild(btn);
+  const panel = document.createElement('div');
+  panel.className = 'dpanel'+(i===0?' on':'');
+  panel.id = 'p'+i;
+  panel.innerHTML = `
+    <div class="ph">
+      <h4>Domain ${d.num} — ${d.name}</h4>
+      <p>${d.desc}</p>
+      ${d.note?`<div class="pnote">${d.note}</div>`:''}
+    </div>
+    <div class="sdgrid">${d.subs.map(s=>`<div class="sdc"><p class="sid">${s.id}</p><p class="sn">${s.name}</p><p class="sd">${s.desc}</p></div>`).join('')}</div>
+  `;
+  panelsEl.appendChild(panel);
+});
+
+document.getElementById('rdate').textContent = new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+
+const sections = [
+  { label:'Portrait', type:'truncated', text:'Asa is a program director working at the intersection of higher education access, student success, and workforce development. His collaboration with AI is almost entirely production-oriented — he comes with raw material in hand and a clear output in mind. His use of AI is instrumental and confident in texture, but narrow in practice.\n\nThe friction point is that his moral clarity rarely becomes operational design through AI collaboration. He knows who he is building for. He has not yet consistently used AI to ask the harder questions about how what he is building might fail them, what it is optimizing for, or whether a different architecture would serve them better.\n\nA collaborator working with Asa would experience him as warm, purposeful, decisive, and efficient — and would eventually notice that he does not slow down to challenge the room, including the AI. With junior teammates the pace is generous; with peers the questioning runs lighter. The dependency: Asa\'s mission clarity holds the work together, and the work loses its compass once he is not in the room — the population-specific knowledge that gives the programs their integrity has not yet been encoded in artifacts that travel without him.' },
+  { label:'Domain scores', type:'scores', scores:[{n:'Domain 1 — Benevolent intent',r:'Effective',c:'e'},{n:'Domain 2 — Planning and scope',r:'Effective',c:'e'},{n:'Domain 3 — Judgment and steering',r:'Developing',c:'d'},{n:'Domain 4 — Follow-through and impact',r:'Effective',c:'e'},{n:'Domain 5 — Adaptive Intelligence',r:'Highly Effective',c:'he'}] },
+  { label:'Domain 5 — Adaptive Intelligence (excerpt)', type:'truncated', text:'Rating: Highly Effective · Confidence: High\n\nAsa\'s depth (5a) is the most distinctive feature of his practice. He brings specific knowledge of the population his programs serve — place-committed, first-generation, working, caregiving students — and that knowledge holds its ground when the model produces generic language. In a recent session, the model returned standard outreach language about "non-traditional learners"; Asa replaced it with specific structural realities ("students who can\'t leave their county for a degree") that the model could not have generated without him.' },
+  { label:'What matters next (excerpt)', type:'truncated', text:'Primary development target: the verification gap. Asa accepts AI output — market research, statistics, leadership claims — with limited scrutiny, particularly when the output supports a direction he has already chosen. This is a habit gap, not a skill gap. His domain expertise is deep enough to catch errors when he looks; the discipline of looking is not yet automatic.' }
+];
+
+let running = false;
+function startReport() {
+  if (running) return;
+  running = true;
+  const btn = document.getElementById('genBtn');
+  btn.disabled = true;
+  btn.querySelector('span').textContent = 'Generating...';
+  const frame = document.getElementById('reportFrame');
+  frame.classList.add('on');
+  const body = document.getElementById('rfBody');
+  body.innerHTML = '';
+  notifyHeight();
+  let si = 0;
+  function nextSection() {
+    if (si >= sections.length) {
+      const t = document.createElement('div');
+      t.className = 'rf-trunc';
+      t.textContent = '— full report: 5 domain narratives, developmental scaffolding, coaching prompt —';
+      body.appendChild(t);
+      document.getElementById('genBtn').querySelector('span').textContent = 'Sample generated';
+      notifyHeight();
+      return;
+    }
+    const s = sections[si++];
+    const sec = document.createElement('div');
+    sec.className = 'rf-sec';
+    const lbl = document.createElement('div');
+    lbl.className = 'rf-lbl';
+    lbl.textContent = s.label;
+    sec.appendChild(lbl);
+    if (s.type === 'scores') {
+      const grid = document.createElement('div');
+      grid.className = 'scores-grid';
+      s.scores.forEach(sc => {
+        const row = document.createElement('div');
+        row.className = 'sr';
+        row.innerHTML = `<span class="srn">${sc.n}</span><span class="srr ${sc.c}">${sc.r}</span>`;
+        grid.appendChild(row);
+      });
+      sec.appendChild(grid);
+      body.appendChild(sec);
+      notifyHeight();
+      setTimeout(nextSection, 300);
+    } else {
+      const p = document.createElement('p');
+      p.className = 'rf-txt';
+      sec.appendChild(p);
+      body.appendChild(sec);
+      typeText(p, s.text, s.type === 'truncated', () => setTimeout(nextSection, 200));
+    }
+  }
+  setTimeout(nextSection, 150);
+}
+
+function typeText(el, fullText, truncate, done) {
+  const cutAt = truncate ? Math.floor(fullText.length * 0.65) : fullText.length;
+  const text = fullText.slice(0, cutAt);
+  const paras = text.split('\n\n');
+  let pi = 0, ci = 0;
+  let cur = el;
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+  function tick() {
+    if (pi >= paras.length) {
+      cursor.remove();
+      if (truncate) {
+        const ell = document.createElement('span');
+        ell.className = 'rf-ellipsis';
+        ell.textContent = '...';
+        cur.appendChild(ell);
+      }
+      notifyHeight();
+      if (done) done();
+      return;
+    }
+    if (ci === 0 && pi > 0) {
+      cursor.remove();
+      cur = document.createElement('p');
+      cur.className = 'rf-txt';
+      el.parentElement.appendChild(cur);
+    }
+    if (ci === 0) cur.appendChild(cursor);
+    const line = paras[pi];
+    if (ci < line.length) {
+      cursor.insertAdjacentText('beforebegin', line[ci]);
+      ci++;
+      const ch = line[ci-1];
+      const delay = ch==='.'||ch==='!'||ch==='?' ? 28 : ch===','||ch===';' ? 14 : 4;
+      setTimeout(tick, delay);
+    } else { pi++; ci=0; setTimeout(tick, 45); }
+    const b = document.getElementById('rfBody');
+    if (b) b.scrollTop = b.scrollHeight;
+  }
+  tick();
+}
+
+function notifyHeight() {
+  const h = document.body.scrollHeight;
+  window.parent.postMessage({ type: 'cirf-resize', height: h }, '*');
+}
+window.addEventListener('load', () => setTimeout(notifyHeight, 200));
+window.addEventListener('resize', () => setTimeout(notifyHeight, 100));
+
+if (window.ResizeObserver) {
+  new ResizeObserver(() => setTimeout(notifyHeight, 100)).observe(document.body);
+}
+</script>
+</body>
+</html>
